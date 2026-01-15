@@ -1,0 +1,69 @@
+@startuml
+title Sistema de Biblioteca com Reserva Online
+
+class Biblioteca {
+  - int id
+  - String nome
+  - String endereco
+  - List<Exemplar> exemplares
+}
+
+class Livro {
+  - int id
+  - String titulo
+  - int anoPublicacao
+  - List<Autor> autores
+  - Editora editora
+  - List<Exemplar> exemplares
+}
+
+class Exemplar {
+  - int id
+  - String codigo
+  - Biblioteca biblioteca
+  - Livro livro
+}
+
+class Usuario {
+  - int id
+  - String nome
+  - String email
+  - List<Reserva> reservas
+}
+
+class Reserva {
+  - int id
+  - String dataSolicitacao
+  - String dataExpiracao
+  - Usuario usuario
+  - Livro livro
+}
+
+class Emprestimo {
+  - int id
+  - String dataRetirada
+  - String dataDevolucao
+  - Exemplar exemplar
+}
+
+class Autor {
+  - int id
+  - String nome
+  - List<Livro> livros
+}
+
+class Editora {
+  - int id
+  - String nome
+  - List<Livro> livros
+}
+
+Biblioteca "1" *-- "0..*" Exemplar 
+Livro "1" -- "1..*" Exemplar 
+Livro "*" -- "*" Autor 
+Editora "1" -- "0..*" Livro 
+Usuario "1" -- "0..*" Reserva 
+Exemplar "1" -- "0..*" Reserva 
+Exemplar "1" -- "0..*" Emprestimo 
+
+@enduml
