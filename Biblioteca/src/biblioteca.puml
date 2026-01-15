@@ -1,4 +1,4 @@
-@startuml
+@startuml Biblioteca-diagrama
 title Sistema de Biblioteca com Reserva Online
 
 class Biblioteca {
