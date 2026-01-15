@@ -26,7 +26,7 @@ public class Main {
         // ===== Pedido =====
         Pedido pedido = new Pedido();
 
-        // ===== Forma de Pagamento (polimorfismo) =====
+        // ===== Forma de Pagamento =====
         Pagamento pagamento = new PagamentoBoleto();
         pagamento.pagar();
 

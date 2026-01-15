@@ -1,0 +1,50 @@
+@startuml biblioteca-diagrama
+title Sistema de Comércio Eletrônico
+
+class Cliente {
+  - int id
+  - String nome
+  - String email
+  - List<Pedido> pedidos
+}
+
+class Produto {
+  - int id
+  - String nome
+  - double preco
+}
+
+class Pedido {
+  - int id
+  - String data
+  - double total
+  - Cliente cliente
+  - List<ItemPedido> itens
+  - Pagamento pagamento
+}
+
+class ItemPedido {
+  - int quantidade
+  - double subtotal
+  - Produto produto
+}
+
+abstract class Pagamento {
+  - double valor
+  + void pagar()
+}
+
+class PagamentoCartao
+class PagamentoPix
+class PagamentoBoleto
+
+Cliente "1" -- "0..*" Pedido 
+Pedido "1" *-- "1..*" ItemPedido 
+ItemPedido "*" -- "1" Produto 
+Pedido "1" o-- "1" Pagamento 
+
+Pagamento <|-- PagamentoCartao
+Pagamento <|-- PagamentoPix
+Pagamento <|-- PagamentoBoleto
+
+@enduml
